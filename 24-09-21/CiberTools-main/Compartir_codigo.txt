@@ -1,0 +1,123 @@
+from typing import Protocol
+import nmap
+
+host=input("[+] Introduce la  ip del objetivo")
+nmap=nmap.PortScanner
+results=nm.scan(host)
+#print(results)
+print("Host : %s" %host)
+print("State : %s" % nm[host].state())
+for proto in nm[host].all_protocols():
+    print("Protocol :  %s" %proto)
+    lport = nm[host][proto].keys()
+    sorted.(lport)
+    for port in lport:
+        print("port: %s\tstate: %s" % (port, nm[host][proto][port]["state"]))
+
+#--------------------------------------------------------------------------------------#
+
+sudo apt install nmap
+
+#!/bin/bash
+#
+# scan.sh
+network=
+# Salir si no se encuentra nmap
+x=`which nmap 1> /dev/null 2>&1`
+if [ $? -eq 1 ] ; then
+   echo "nmap no instalado"
+   exit 1
+fi
+# Encuentra redes disponibles
+netlist=`ip addr show | grep inet | awk '{print $2}' | egrep -v ^'fe80|127.0|::|fd0c'`
+cnt=1
+echo "Redes disponibles:" ; echo
+echo " 0) Salir"
+for net in $netlist; do
+   echo " $cnt) $net"
+   cnt=`expr $cnt + 1`
+done
+echo
+# Seleccionar red para escanear
+netsel=
+while [ X"$netsel" = X ] ; do
+   echo -n "select : "
+   read netsel
+done
+if [ $netsel -eq 0 ] ; then
+   exit 1
+fi
+cnt=1
+for net in $netlist ; do
+   if [ $cnt -eq $netsel ] ; then
+      network=`echo $net`
+      break
+   fi
+   cnt=`expr $cnt + 1`
+done
+echo "Scaneando $network (un momento)..." ; echo
+network_s=`echo $network | awk -F "." '{print $1"."$2}'`
+nmap -sP ${network} | grep ${network_s} | awk -F " " '{print $5 $6}'
+
+########################################################################################################################
+import socket
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.connect(("8.8.8.8", 80))
+print(s.getsockname()[0])
+import socket
+def extract_ip():
+    st = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:       
+        st.connect(('10.255.255.255', 1))
+        IP = st.getsockname()[0]
+    except Exception:
+        IP = '127.0.0.1'
+    finally:
+        st.close()
+    return IP
+print(extract_ip())
+
+##########################################################################################################################
+
+from openpyxl import Workbook
+from openpyxl import load_workbook
+import os
+
+libro = Workbook()#work(): crea un libro y lo almacenamos en "libro", que será nuestro libro
+pagina= libro.active
+libro.save(".\desktop\Calamardo.xlsx")
+print(libro.sheetnames)
+
+archivo=open(".\desktop\prueba.txt","w")
+archivo.write("Zanahoria\nCoco")
+archivo.close()
+
+archivo=open(".\desktop\prueba.txt","r")
+lineas=archivo.readlines()
+datos=[]
+for i in lineas:
+    datos.append(i)
+archivo.close()
+#lec=len(datos)
+print(datos)
+pagina=datos
+libro.save(".\desktop\Calamardo.xlsx")
+#######################################################
+#m="A"
+#c=0
+#su=m+str(c)
+#list=[]
+#for i in list:
+    #pagina=datos
+#for i in range(lec):
+#    su=m+str(c)
+#    list.append(su)
+#    c+=1
+#q=0
+
+
+
+ip_add_pattern = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$")
+ip_add_entered = input("\nPlease enter the ip address that you want to scan: ")
+    if ip_add_pattern.search(ip_add_entered):
+        print(f"{ip_add_entered} is a valid ip address")
