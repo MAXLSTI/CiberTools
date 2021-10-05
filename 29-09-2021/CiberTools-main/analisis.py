@@ -13,6 +13,7 @@ from subprocess import *
 from requests import api
 import scapy.all as scapy
 import nmap
+import openpyxl
 #from pyhunter import PyHunter
 #from openpyxl import Workbook
 import getpass
@@ -50,8 +51,33 @@ def geolocalizacion():
     data = soup.text
     data = soup.json()
     datos = open("datos.txt", "w")
+    #variables para excel
+    n=1
+	q=0
+	r=0
+	valor = []
+	valor2= []
+	wb = openpyxl.Workbook()
+	ws = wb.active
+
+    
     for key in data:
+        #para guardar el txt
         datos.write(key + ": " + str(data[key])+"\n")
+        #para guardar el excel
+		valor.append(str(key))
+		ws.cell(row=r+1,column=1).value = str(valor[q])
+
+		valor2.append(str(data[key]))
+		ws.cell(row=r+1,column=2).value = str(valor2[q])
+
+		
+		
+		n=n+1
+		q=q+1
+		r=r+1
+		
+	wb.save('datoss.xlsx')
     datos.close()
     print("Archivo con datos de Geolocalizacion generado con exito ")
     return ip_local, domain
@@ -130,70 +156,128 @@ def my_ip():
     else:
         ip = ''
 
+def send_correo():
+    # Lugar de trabajo de carlos
+    # Correo que estamos usando paymentsnoreplybbva@gmail.com
+    # Crear el mensaje
+    #pedir datos de inicio de sesion
+    usuario= input("Ingrese su nombre de usuario:")
+    contraseña=getpass.getpass("Ingrese su  contraseña:")
 
-# Lugar de trabajo de carlos
-# Correo que estamos usando paymentsnoreplybbva@gmail.com
-def enviarcorreo():
-    # pedir datos para iniciar sesion
-    correo = input("Ingrese su correo: ")
-    contraseña = input("Ingrese su  contraseña: ")
     destinatario = input("Ingrese el correo del destinatario: ")
-    asunto = input("Ingrese el asunto a tratar: ")
-    cuerpoDelMensaje = input("Ingresa el texto que quieras añadirle: ")
+    asunto = input("Ingrese el asunto a tratar:")
+    # Crear el mensaje
+    cuerpoDelMensaje = MIMEMultipart("alternative")
+    cuerpoDelMensaje["Subject"] = asunto
+    cuerpoDelMensaje["From"] = usuario
+    cuerpoDelMensaje["To"] = destinatario
 
-    # Crear la conexion
+    html = f"""
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+        </head>
+        <body>
+        <h1>Hola</h2>
+        </body>
+        </html>
+
+        """
+
+    parte_html = MIMEText(html, "html")
+
+    cuerpoDelMensaje.attach(parte_html)
+
+    #Enviar el mensaje
+    archivo = "C:/Users/Laboratorio/OneDrive - Universidad Autonoma de Nuevo León/2020-2021/Desktop/CiberTools/29-09-2021/MicrosoftTeams-image_(1).png"
+
+    with open(archivo, "rb") as adjunto:
+            contenido_adjunto = MIMEBase("aplication", "octet-stream")
+            contenido_adjunto.set_payload(adjunto.read())
+
+    encoders.encode_base64(contenido_adjunto)
+
+    contenido_adjunto.add_header(
+            "Content-Dispotition",
+            f"attachment; filename = {archivo}",
+    )
+
+    cuerpoDelMensaje.attach(contenido_adjunto)
+    mensaje_final = cuerpoDelMensaje.as_string()
+
     context = ssl.create_default_context()
-
     with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-        server.login(correo, contraseña)
-        print("Inicia Sesion!")
+        server.login(usuario, contraseña)
+        print("Seion Iniciada!")
+        server.sendmail(usuario, destinatario, mensaje_final)
+        print("Mensaje Enviado!")
+
+
+
+    # Lugar de trabajo de Max
+    #def enviarcorreo():
+        # pedir datos para iniciar sesion
+        #correo = input("Ingrese su correo: ")
+        #contraseña = input("Ingrese su  contraseña: ")
         #destinatario = input("Ingrese el correo del destinatario: ")
-        #asunto = input("Ingrese el asunto a tratar :")
-        server.sendmail(correo, destinatario, cuerpoDelMensaje, asunto)
-        print("Mensaje enviado!")
-        #Crear el mensaje
-        cuerpoDelMensaje = MIMEMultipart("alternative")
-        cuerpoDelMensaje["Subject"] = asunto
-        cuerpoDelMensaje["From"] = correo
-        cuerpoDelMensaje["To"] = destinatario
+        #asunto = input("Ingrese el asunto a tratar: ")
+        #cuerpoDelMensaje = input("Ingresa el texto que quieras añadirle: ")
+    #
+        ## Crear la conexion
+        #context = ssl.create_default_context()
+    #
+        #with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+        #    server.login(correo, contraseña)
+        #    print("Inicia Sesion!")
+        #    #destinatario = input("Ingrese el correo del destinatario: ")
+        #    #asunto = input("Ingrese el asunto a tratar :")
+        #    server.sendmail(correo, destinatario, cuerpoDelMensaje, asunto)
+        #    print("Mensaje enviado!")
+        #    #Crear el mensaje
+        #    cuerpoDelMensaje = MIMEMultipart("alternative")
+        #    cuerpoDelMensaje["Subject"] = asunto
+        #    cuerpoDelMensaje["From"] = correo
+        #    cuerpoDelMensaje["To"] = destinatario
+    #
+        #html = f"""
+        ## ## Aqui puedes solocar tu mensaje en HTML 
+        ## 
+        ##"""
+    #
+        #parte_html = MIMEText(html, "html")
+    #
+        #cuerpoDelMensaje.attach(parte_html)
+    #
+        #archivo = "MicrosoftTeams-image(1).png"
+        #with open(archivo, "rb") as adjunto:
+        #    contenido_adjunto = MIMEBase("aplication", "octet-stream")
+        #    contenido_adjunto.set_payload(adjunto.read())
+    #
+        #encoders.encode_base64(contenido_adjunto)
+    #
+        #contenido_adjunto.add_header(
+        #    "Content-Dispotition",
+        #    f"attachment; filename = {archivo}",
+        #)
+    #
+        #cuerpoDelMensaje.attach(contenido_adjunto)
+        #mensaje_final = cuerpoDelMensaje.as_string()
+    #
+        #context = ssl.create_default_context()
+        #with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+        #   server.login(correo, contraseña)
+        #   print("Seion Iniciada!")
+        #   server.sendmail(correo, destinatario, mensaje_final)
+        #   print("Mensaje Enviado!")
+        #return cuerpoDelMensaje
+    #enviarcorreo()
 
-    #html = f"""
-    ## ## Aqui puedes solocar tu mensaje en HTML 
-    ## 
-    ##"""
-#
-    #parte_html = MIMEText(html, "html")
-#
-    #cuerpoDelMensaje.attach(parte_html)
-#
-    #archivo = "MicrosoftTeams-image(1).png"
-    #with open(archivo, "rb") as adjunto:
-    #    contenido_adjunto = MIMEBase("aplication", "octet-stream")
-    #    contenido_adjunto.set_payload(adjunto.read())
-#
-    #encoders.encode_base64(contenido_adjunto)
-#
-    #contenido_adjunto.add_header(
-    #    "Content-Dispotition",
-    #    f"attachment; filename = {archivo}",
-    #)
-#
-    #cuerpoDelMensaje.attach(contenido_adjunto)
-    #mensaje_final = cuerpoDelMensaje.as_string()
-#
-    #context = ssl.create_default_context()
-    #with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-    #   server.login(correo, contraseña)
-    #   print("Seion Iniciada!")
-    #   server.sendmail(correo, destinatario, mensaje_final)
-    #   print("Mensaje Enviado!")
-    return cuerpoDelMensaje
-enviarcorreo()
-
-# Lugar de trabajo de Max
+    # Lugar de trabajo de Mendiola
 
 
-# Lugar de trabajo de Mendiola
-
-
-# Lugar de trabajo de Emilio
+    # Lugar de trabajo de Emilio
+send_correo()
