@@ -1,7 +1,8 @@
 from importa import *
 
+# Espacio de colaboracion de juan daniel 
 def encrypt():
-    subprocess.run(['bash','/home/danylsti/Desktop/Proyecto-final/CiberTools/29-09-2021/CiberTools-main/base64.sh'])
+    subprocess.run(['bash','E:/OneDrive - Universidad Autonoma de Nuevo León/2020-2021/Desktop/05-10-2021/base64.sh'])
 
 
 # Funcion para la barra de progreso
@@ -15,27 +16,42 @@ def barra():
     bar2.finish()
 
 
-# Funcion para hacer la llamada a la API de Geolocalizacion
 
-
-def geolocalizacion():
+# Argumentos 
+def argumentos():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-ip", dest="ip", default="8.8.4.4",
+    parser.add_argument("-ip", dest="ip_public", default="8.8.4.4",
                         help="Ingresa la ip, si no pones" +
                         "nada se tomará automatico 8.8.4.4")
-    parser.add_argument("-k", dest="ip_local", help="Ingresa la ip")
+    parser.add_argument("-i", dest="ip_local", help="Ingresa la ip")
     parser.add_argument("-d", dest="domain",
                         help="Ingresa un dominio para hunter")
     parser.add_argument("-user", dest="user_name",
                         help="Ingresa un username para el envio del correo ")
     parser.add_argument("-pssword", dest="passw",
                         help="Ingresa la contraseña del correo ")
+    parser.add_argument("-pts", dest="puerto",default='20-25',
+                        help="Ingresa los puertos a escanear ejemplo --> 80-90 ")
+    parser.add_argument("-m", dest="msg",
+                        help="Ingresa el mensaje a enviar  ")
+    parser.add_argument("-dest", dest="numero",
+                        help="Ingresa el numero a dodne enviaras el mensaje  ")
+    mensaje = parser.parse_args()
+    numero = parser.parse_args()
+    puertos = parser.parse_args()
     ip_public = parser.parse_args()
     ip_local = parser.parse_args()
     domain = parser.parse_args()
     user = parser.parse_args()
     password = parser.parse_args()
-    url = "http://free.ipwhois.io/json/{}".format(ip_public.ip)
+    #puerto =  parser.parse_args()
+    return ip_local, ip_public, domain, user, puertos, mensaje, numero
+
+# Funcion para hacer la llamada a la API de Geolocalizacion
+
+
+def geolocalizacion(ip_public):
+    url = "http://free.ipwhois.io/json/{}".format(ip_public.ip_public)
     barra()
     soup = requests.get(url)
     data = soup.text
@@ -63,17 +79,17 @@ def geolocalizacion():
     wb.save('datoss.xlsx')
     datos.close()
     print("Archivo con datos de Geolocalizacion generado con exito ")
-    return ip_local, ip_public, domain, user, password
+   
 
 # Funcion para scanear las ip activas en una red local
 
 
-def scan(ip):
+def scan(ip_local):
     # Usamos argparser para pasar los argumentos por terminal
     archivo = open("ips.txt", "w")
     print("Scanning...")
     # iniciamos el scaneo
-    arp_request = scapy.ARP(pdst=ip.ip_local+"/24")
+    arp_request = scapy.ARP(pdst=ip_local.ip_local+"/24")
     brodcast = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")
     arp = brodcast / arp_request
     barra()
@@ -81,8 +97,8 @@ def scan(ip):
     # Guardamos en un txt las ip y las mac addres
     # con un for recorriendo answered
     for element in answered:
-        archivo.write("IP:{}".format(element[1].psrc))
-        archivo.write("MAC address: {}\n".format(element[1].hwsrc))
+        archivo.write("IP:{} ".format(element[1].psrc))
+        archivo.write(" MAC address: {}\n ".format(element[1].hwsrc))
     archivo.close()
     print("Archivo con ip´s activas en la" +
           "red local ingresada generado con exito")
@@ -90,38 +106,37 @@ def scan(ip):
 # Se Empieza a leer el archivo que contiene las ip para almacenar en una lista
 
 
-def Ports():
-    lista_ip = []
-    archivo = open("ips.txt", "r")
-    lineas = archivo.readlines()
-    for i in lineas:
-        lista_ip.append((i[3:18]))
-    print("Estas son las ip que puedes utilizar: -> ", lista_ip)
+def Ports(puertos,ip_local):
+    archivo=open('puertos_scaneado.txt','w')
+    ip_add_pattern = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$")
+    port_range_pattern = re.compile("([0-9]+)-([0-9]+)")
+    port_min = 0
+    port_max = 65535
+    open_ports = []
+    while True:
+        ip_add_entered = ip_local.ip_local
+        if ip_add_pattern.search(ip_add_entered):
+            print(f"{ip_add_entered} is a valid ip address")
+            break
+    while True:
+        port_range = puertos.puerto
+        port_range_valid = port_range_pattern.search(port_range.replace(" ",""))
+        if port_range_valid:
+            port_min = int(port_range_valid.group(1))
+            port_max = int(port_range_valid.group(2))
+            break
+    nm = nmap.PortScanner()
+    for port in range(port_min, port_max + 1):
+        try:
+            result = nm.scan(ip_add_entered, str(port))
+            port_status = (result['scan'][ip_add_entered]['tcp'][port]['state'])
+            archivo.write(nm.csv()+(f"Port {port} is {port_status}")+'\n')
+        except:
+            print(f"Cannot scan port {port}.")
     archivo.close()
 
-    # Declaramos listas
-    lista_puertos = [80, 8080, 22, 23, 21, 443, 3306, 53]
-    open_ports = []
-    ip = input("ingresa la ip para scanear puertos: ")
-    # Solicitamos la ip para escaenadr puertos
-    for port in lista_puertos:
-        try:
-            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-                s.settimeout(0.5)
-                s.connect((ip, port))
-                open_ports.append(port)
-        except:
-            pass
-    for port in open_ports:
-        print("Port {} is open on {}".format(port, ip))
-    op = input("Deseas Escanear otra ip: [y]o[n]")
-    while op == "y":
-        Ports()
-    else:
-        print("Scrip Fuera")
 
 # Echale un ojo a esta funcion max y carlos
-
 
 def my_ip():
     url1 = 'https://www.cual-es-mi-ip.net/'
@@ -138,91 +153,85 @@ def my_ip():
         ip = ''
 
 
-# Lugar de trabajo de carlos
-# Correo que estamos usando paymentsnoreplybbva@gmail.com
-# Fporeladmin1
+def enviar_sms(numero,mensaje):
+    archivo=open('C:/Users/mcdan/OneDrive - Universidad Autonoma de Nuevo León/2020-2021/Desktop/llaves.txt')
+    claves=[]
+    lineas = archivo.readlines()
+    for linea in lineas:
+        claves.append(linea)
+    archivo.close()
+    accountSID =claves[0]
+    authToken = claves[1]
+    twilioCli = Client(accountSID,authToken)
+
+    myTwilioNumber = claves[2]
+
+    destCellPhone = '+52'+numero.numero
+
+    msg = mensaje.msg
+    #msg = input("Msj a enviar: ")
+    message = twilioCli.messages.create(to = destCellPhone,
+                                        from_ = myTwilioNumber,
+                                        body = msg)
+    #Información general
+    print(message.to)
+    #print(message.from_)
+    #print(message.body)
+
+    #print(message.sid)
+    #print(message)
+    #print(type(message))
+    #print(message.status)
+    #print(message.date_created)
+    #print(message.date_sent)
 
 
-def enviarcorreo(user, password):
-    # Pedir datos de inicio de sesion
-    usuario = user.user_name
-    contraseña = password.passw
-    destinatario = input("Ingrese el correo del destinatario: ")
-    asunto = input("Ingrese el asunto a tratar: ")
+## Lugar de trabajo de carlos
+## Correo que estamos usando paymentsnoreplybbva@gmail.com
+## Fporeladmin1
+#
+#
 
-    # Crear el mensaje
-    cuerpoDelMensaje = MIMEMultipart("alternative")
-    cuerpoDelMensaje["Subject"] = asunto
-    cuerpoDelMensaje["From"] = usuario
-    cuerpoDelMensaje["To"] = destinatario
+def enviar(user):
+    archivo=open('C:/Users/mcdan/OneDrive - Universidad Autonoma de Nuevo León/2020-2021/Desktop/pass.txt','r')
+    contraseña = archivo.readline()
+   
+    fromaddr = user.user_name
+    password = contraseña
+    toaddrs = ['perritotovar223@gmail.com', 'paymentsnoreplybbva@gmail.com','daniel.luevanoui@uanl.edu.mx']
 
-    html = f"""
+    content = 'hello, this is email content.'
+    textApart = MIMEText(content)
+    
+    
+    imageFile = 'datos.txt'
+    imageApart = MIMEImage(open(imageFile, 'rb').read(), imageFile.split('.')[-1])
+    imageApart.add_header('Content-Disposition', 'attachment', filename=imageFile)
 
-
-        """
-
-    parte_html = MIMEText(html, "html")
-
-    cuerpoDelMensaje.attach(parte_html)
-
-    #Enviar el mensaje
-    archivo = "datos.txt"
-    archivo2="ips.txt"
-    archivo3="cmds.txt"
-    arch=[archivo,archivo2,archivo3]
-    name=["datos.txt","ips.txt","cmds.txt"]
-    #with open(archivo, "rb") as adjunto:
-    for f in arch:
-        contenido_adjunto = MIMEBase("aplication", "octet-stream")
-        contenido_adjunto.set_payload(open(f,"rb").read())
-        contenido_adjunto.add_header("content-Disposition",'attachment; filename="datos.txt"')
-
-    #encoders.encode_base64(contenido_adjunto)
-
-    contenido_adjunto.add_header(
-            "Content-Dispotition",
-            f"attachment; filename = {archivo}",
-    )
-
-    cuerpoDelMensaje.attach(contenido_adjunto)
-    mensaje_final = cuerpoDelMensaje.as_string()
-
-    context = ssl.create_default_context()
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-        server.login(usuario, contraseña)
-        print("Seion Iniciada!")
-        server.sendmail(usuario, destinatario, mensaje_final)
-        print("Mensaje Enviado!")
+    pdfFile = 'cmds.txt'
+    pdfApart = MIMEApplication(open(pdfFile, 'rb').read())
+    pdfApart.add_header('Content-Disposition', 'attachment', filename=pdfFile)
 
 
-# Lugar de trabajo de Max
+    zipFile = 'compartir_codigo.txt'
+    zipApart = MIMEApplication(open(zipFile, 'rb').read())
+    zipApart.add_header('Content-Disposition', 'attachment', filename=zipFile)
+
+    m = MIMEMultipart()
+    m.attach(textApart)
+    m.attach(imageApart)
+    m.attach(pdfApart)
+    m.attach(zipApart)
+    m['Subject'] = 'title'
+
+    try:
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+            server.login(fromaddr,password)
+            server.sendmail(fromaddr, toaddrs, m.as_string())
+            print('success')
+            server.quit()
+    except smtplib.SMTPException as e:
+                     print ('error:', e) # Error de impresión
 
 
-def voz(text_file, lang, name_file):
-
-    with open("Frases.txt", "w") as archivo:
-        archivo.write("Es decir que se han apoderado de lo que creíamos creer y nos haceen creer que creíamos que \n los pensamientos que hemos tenido son pensamientos que creemos que creíamos")
-        archivo.close()
-
-    with open(text_file, "r") as file:
-        text = file.read()
-
-    file = gTTS(text=text, lang="es")
-    filename = name_file
-    file.save(filename)
-    i = 0
-    sigma=["a,b,c,d,e,f"]
-    for i in range(0,5):
-        for m in sigma:
-            print(m)
-
-voz("Frases.txt", "es", "audio.mp3")
-#audio = "audio.mp3"
-os.system("audio.mp3")
-time.sleep(20)
-os.remove("audio.mp3") 
-
-# Lugar de trabajo de Mendiola
-
-
-# Lugar de trabajo de Emilio

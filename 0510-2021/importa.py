@@ -26,12 +26,3 @@ from email.mime.image import MIMEImage
 import openpyxl
 import subprocess
 from gtts import gTTS
-import re 
-from twilio.rest import Client
-# correo 
-
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.image import MIMEImage
-from email.mime.multipart import MIMEMultipart
-from email.mime.application import MIMEApplication 
