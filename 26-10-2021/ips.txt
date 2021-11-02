@@ -1,5 +1,0 @@
-IP:192.168.100.50  MAC address: 64:31:50:27:95:15
- IP:192.168.100.99  MAC address: a8:2b:cd:71:24:dc
- IP:192.168.100.252  MAC address: 6c:ba:b8:db:66:d0
- IP:192.168.100.253  MAC address: 98:42:65:4b:f3:66
- 

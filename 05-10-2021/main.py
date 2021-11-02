@@ -12,7 +12,7 @@ if  __name__=="__main__":
     print("Iniciando scaneo ")
     scan(ip_local) 
     Ports(ip_local, puertos)
-    encrypt()
+    #encrypt()
     if user.user_name is None:
        print("Error no agregaste los parametos user usa --help para mas información ")
        exit()

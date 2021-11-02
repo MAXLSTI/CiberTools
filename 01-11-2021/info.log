@@ -1,0 +1,102 @@
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): free.ipwhois.io:80
+DEBUG:urllib3.connectionpool:http://free.ipwhois.io:80 "GET /json/8.8.8.8 HTTP/1.1" 200 None
+INFO:root:17:32:23 Ejecucion de funcion geolocalizacion correctamente
+INFO:root:17:32:23 Ejecucion de funcion scan correctamente
+INFO:root:17:32:23 Ejecucion de funcion ports correctamente
+INFO:twilio.http_client:POST Request: https://api.twilio.com/2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5
+/Messages.json
+INFO:twilio.http_client:PAYLOAD: {'To': '+528129440532', 'From': '+15405016870', 'Body': 'Hola amigo tovar'}
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.twilio.com:443
+DEBUG:urllib3.connectionpool:https://api.twilio.com:443 "POST /2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5%0A/Messages.json HTTP/1.1" 201 819
+INFO:twilio.http_client:POST Response: 201 {"sid": "SM687c17bbc2f54ec2bb6887635147fee9", "date_created": "Mon, 01 Nov 2021 23:32:45 +0000", "date_updated": "Mon, 01 Nov 2021 23:32:45 +0000", "date_sent": null, "account_sid": "ACb8d6e14e8eedfe104cac14f5dd959fa5", "to": "+528129440532", "from": "+15405016870", "messaging_service_sid": null, "body": "Sent from your Twilio trial account - Hola amigo tovar", "status": "queued", "num_segments": "1", "num_media": "0", "direction": "outbound-api", "api_version": "2010-04-01", "price": null, "price_unit": "USD", "error_code": null, "error_message": null, "uri": "/2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5/Messages/SM687c17bbc2f54ec2bb6887635147fee9.json", "subresource_uris": {"media": "/2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5/Messages/SM687c17bbc2f54ec2bb6887635147fee9/Media.json"}}
+INFO:root:17:32:23 Ejecucion de funcion enviar_sms correctamente
+INFO:root:17:32:23 Ejecucion de funcion enviar correo  correctamente
+INFO:root:17:32:23 Se ejecuto APIHUNTER correctamente 
+INFO:root:17:32:23 Se ejecuto Encrypt correctamente 
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): free.ipwhois.io:80
+DEBUG:urllib3.connectionpool:http://free.ipwhois.io:80 "GET /json/8.8.8.8 HTTP/1.1" 200 None
+INFO:root:2021-11-01 17:38:27.285919 Ejecucion de funcion geolocalizacion correctamente
+INFO:root:2021-11-01 17:38:27.285919 Ejecucion de funcion scan correctamente
+INFO:root:2021-11-01 17:38:27.285919 Ejecucion de funcion ports correctamente
+INFO:twilio.http_client:POST Request: https://api.twilio.com/2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5
+/Messages.json
+INFO:twilio.http_client:PAYLOAD: {'To': '+528129440532', 'From': '+15405016870', 'Body': 'Hola amigo tovar'}
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.twilio.com:443
+DEBUG:urllib3.connectionpool:https://api.twilio.com:443 "POST /2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5%0A/Messages.json HTTP/1.1" 201 819
+INFO:twilio.http_client:POST Response: 201 {"sid": "SM3eed65f5fd9040b9bbca56fec1487353", "date_created": "Mon, 01 Nov 2021 23:38:51 +0000", "date_updated": "Mon, 01 Nov 2021 23:38:51 +0000", "date_sent": null, "account_sid": "ACb8d6e14e8eedfe104cac14f5dd959fa5", "to": "+528129440532", "from": "+15405016870", "messaging_service_sid": null, "body": "Sent from your Twilio trial account - Hola amigo tovar", "status": "queued", "num_segments": "1", "num_media": "0", "direction": "outbound-api", "api_version": "2010-04-01", "price": null, "price_unit": "USD", "error_code": null, "error_message": null, "uri": "/2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5/Messages/SM3eed65f5fd9040b9bbca56fec1487353.json", "subresource_uris": {"media": "/2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5/Messages/SM3eed65f5fd9040b9bbca56fec1487353/Media.json"}}
+INFO:root:2021-11-01 17:38:27.285919 Ejecucion de funcion enviar_sms correctamente
+INFO:root:2021-11-01 17:38:27.285919 Ejecucion de funcion enviar correo  correctamente
+INFO:root:2021-11-01 17:38:27.285919 Se ejecuto APIHUNTER correctamente 
+INFO:root:2021-11-01 17:38:27.285919 Se ejecuto Encrypt correctamente 
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): free.ipwhois.io:80
+DEBUG:urllib3.connectionpool:http://free.ipwhois.io:80 "GET /json/8.8.8.8 HTTP/1.1" 200 None
+INFO:root:2021-11-01 17:39:47.394805 Ejecucion de funcion geolocalizacion correctamente
+ERROR:root:2021-11-01 17:39:47.394805 Ejecucion de funcion scan fallo 
+INFO:root:2021-11-01 17:39:47.394805 Ejecucion de funcion ports correctamente
+INFO:twilio.http_client:POST Request: https://api.twilio.com/2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5
+/Messages.json
+INFO:twilio.http_client:PAYLOAD: {'To': '+528129440532', 'From': '+15405016870', 'Body': 'Hola amigo tovar'}
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.twilio.com:443
+ERROR:root:2021-11-01 17:39:47.394805 Ejecucion de funcion enviar_sms fallo
+ERROR:root:2021-11-01 17:39:47.394805 Ejecucion de funcion enviar correo fallo
+INFO:root:2021-11-01 17:39:47.394805 Se ejecuto APIHUNTER correctamente 
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): free.ipwhois.io:80
+DEBUG:urllib3.connectionpool:http://free.ipwhois.io:80 "GET /json/8.8.8.8 HTTP/1.1" 200 None
+INFO:root:2021-11-01 17:40:43.607949 Ejecucion de funcion geolocalizacion correctamente
+INFO:root:2021-11-01 17:40:43.607949 Ejecucion de funcion scan correctamente
+INFO:root:2021-11-01 17:40:43.607949 Ejecucion de funcion ports correctamente
+INFO:twilio.http_client:POST Request: https://api.twilio.com/2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5
+/Messages.json
+INFO:twilio.http_client:PAYLOAD: {'To': '+528129440532', 'From': '+15405016870', 'Body': 'Hola amigo tovar'}
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.twilio.com:443
+DEBUG:urllib3.connectionpool:https://api.twilio.com:443 "POST /2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5%0A/Messages.json HTTP/1.1" 201 819
+INFO:twilio.http_client:POST Response: 201 {"sid": "SMedf15d9ee84847fb887cff836bbeb475", "date_created": "Mon, 01 Nov 2021 23:41:12 +0000", "date_updated": "Mon, 01 Nov 2021 23:41:12 +0000", "date_sent": null, "account_sid": "ACb8d6e14e8eedfe104cac14f5dd959fa5", "to": "+528129440532", "from": "+15405016870", "messaging_service_sid": null, "body": "Sent from your Twilio trial account - Hola amigo tovar", "status": "queued", "num_segments": "1", "num_media": "0", "direction": "outbound-api", "api_version": "2010-04-01", "price": null, "price_unit": "USD", "error_code": null, "error_message": null, "uri": "/2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5/Messages/SMedf15d9ee84847fb887cff836bbeb475.json", "subresource_uris": {"media": "/2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5/Messages/SMedf15d9ee84847fb887cff836bbeb475/Media.json"}}
+INFO:root:2021-11-01 17:40:43.607949 Ejecucion de funcion enviar_sms correctamente
+INFO:root:2021-11-01 17:40:43.607949 Ejecucion de funcion enviar correo  correctamente
+INFO:root:2021-11-01 17:40:43.607949 Se ejecuto APIHUNTER correctamente 
+INFO:root:2021-11-01 17:40:43.607949 Se ejecuto Encrypt correctamente 
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): free.ipwhois.io:80
+DEBUG:urllib3.connectionpool:http://free.ipwhois.io:80 "GET /json/8.8.8.8 HTTP/1.1" 200 None
+INFO:root:2021-11-01 17:41:41.632954 Ejecucion de funcion geolocalizacion correctamente
+INFO:root:2021-11-01 17:41:41.632954 Ejecucion de funcion scan correctamente
+INFO:root:2021-11-01 17:41:41.632954 Ejecucion de funcion ports correctamente
+INFO:twilio.http_client:POST Request: https://api.twilio.com/2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5
+/Messages.json
+INFO:twilio.http_client:PAYLOAD: {'To': '+528129440532', 'From': '+15405016870', 'Body': 'Hola amigo tovar'}
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.twilio.com:443
+DEBUG:urllib3.connectionpool:https://api.twilio.com:443 "POST /2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5%0A/Messages.json HTTP/1.1" 201 819
+INFO:twilio.http_client:POST Response: 201 {"sid": "SM360afa879ac549fb9f03e2deb0fc7f25", "date_created": "Mon, 01 Nov 2021 23:42:08 +0000", "date_updated": "Mon, 01 Nov 2021 23:42:08 +0000", "date_sent": null, "account_sid": "ACb8d6e14e8eedfe104cac14f5dd959fa5", "to": "+528129440532", "from": "+15405016870", "messaging_service_sid": null, "body": "Sent from your Twilio trial account - Hola amigo tovar", "status": "queued", "num_segments": "1", "num_media": "0", "direction": "outbound-api", "api_version": "2010-04-01", "price": null, "price_unit": "USD", "error_code": null, "error_message": null, "uri": "/2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5/Messages/SM360afa879ac549fb9f03e2deb0fc7f25.json", "subresource_uris": {"media": "/2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5/Messages/SM360afa879ac549fb9f03e2deb0fc7f25/Media.json"}}
+INFO:root:2021-11-01 17:41:41.632954 Ejecucion de funcion enviar_sms correctamente
+INFO:root:2021-11-01 17:41:41.632954 Ejecucion de funcion enviar correo  correctamente
+INFO:root:2021-11-01 17:41:41.632954 Se ejecuto APIHUNTER correctamente 
+INFO:root:2021-11-01 17:41:41.632954 Se ejecuto Encrypt correctamente 
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): free.ipwhois.io:80
+DEBUG:urllib3.connectionpool:http://free.ipwhois.io:80 "GET /json/8.8.8.8 HTTP/1.1" 200 None
+INFO:root:2021-11-01 17:43:57 Ejecucion de funcion geolocalizacion correctamente
+INFO:root:2021-11-01 17:43:57 Ejecucion de funcion scan correctamente
+INFO:root:2021-11-01 17:43:57 Ejecucion de funcion ports correctamente
+INFO:twilio.http_client:POST Request: https://api.twilio.com/2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5
+/Messages.json
+INFO:twilio.http_client:PAYLOAD: {'To': '+528129440532', 'From': '+15405016870', 'Body': 'Hola amigo tovar'}
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.twilio.com:443
+DEBUG:urllib3.connectionpool:https://api.twilio.com:443 "POST /2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5%0A/Messages.json HTTP/1.1" 201 819
+INFO:twilio.http_client:POST Response: 201 {"sid": "SM98836fc6798b402cb4e8497b7da2794b", "date_created": "Mon, 01 Nov 2021 23:44:18 +0000", "date_updated": "Mon, 01 Nov 2021 23:44:18 +0000", "date_sent": null, "account_sid": "ACb8d6e14e8eedfe104cac14f5dd959fa5", "to": "+528129440532", "from": "+15405016870", "messaging_service_sid": null, "body": "Sent from your Twilio trial account - Hola amigo tovar", "status": "queued", "num_segments": "1", "num_media": "0", "direction": "outbound-api", "api_version": "2010-04-01", "price": null, "price_unit": "USD", "error_code": null, "error_message": null, "uri": "/2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5/Messages/SM98836fc6798b402cb4e8497b7da2794b.json", "subresource_uris": {"media": "/2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5/Messages/SM98836fc6798b402cb4e8497b7da2794b/Media.json"}}
+INFO:root:2021-11-01 17:43:57 Ejecucion de funcion enviar_sms correctamente
+INFO:root:2021-11-01 17:43:57 Ejecucion de funcion enviar correo  correctamente
+INFO:root:2021-11-01 17:43:57 Se ejecuto APIHUNTER correctamente 
+INFO:root:2021-11-01 17:43:57 Se ejecuto Encrypt correctamente 
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): free.ipwhois.io:80
+DEBUG:urllib3.connectionpool:http://free.ipwhois.io:80 "GET /json/8.8.8.8 HTTP/1.1" 200 None
+INFO:root:2021-11-01 17:49:32 Ejecucion de funcion geolocalizacion correctamente
+INFO:root:2021-11-01 17:49:39 Ejecucion de funcion scan correctamente
+INFO:root:2021-11-01 17:49:47 Ejecucion de funcion ports correctamente
+INFO:twilio.http_client:POST Request: https://api.twilio.com/2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5
+/Messages.json
+INFO:twilio.http_client:PAYLOAD: {'To': '+528129440532', 'From': '+15405016870', 'Body': 'Hola amigo tovar'}
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.twilio.com:443
+DEBUG:urllib3.connectionpool:https://api.twilio.com:443 "POST /2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5%0A/Messages.json HTTP/1.1" 201 819
+INFO:twilio.http_client:POST Response: 201 {"sid": "SMc43dc6419d5848ac9ab1ec499b263cc4", "date_created": "Mon, 01 Nov 2021 23:49:55 +0000", "date_updated": "Mon, 01 Nov 2021 23:49:55 +0000", "date_sent": null, "account_sid": "ACb8d6e14e8eedfe104cac14f5dd959fa5", "to": "+528129440532", "from": "+15405016870", "messaging_service_sid": null, "body": "Sent from your Twilio trial account - Hola amigo tovar", "status": "queued", "num_segments": "1", "num_media": "0", "direction": "outbound-api", "api_version": "2010-04-01", "price": null, "price_unit": "USD", "error_code": null, "error_message": null, "uri": "/2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5/Messages/SMc43dc6419d5848ac9ab1ec499b263cc4.json", "subresource_uris": {"media": "/2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5/Messages/SMc43dc6419d5848ac9ab1ec499b263cc4/Media.json"}}
+INFO:root:2021-11-01 17:49:54 Ejecucion de funcion enviar_sms correctamente
+INFO:root:2021-11-01 17:49:54 Ejecucion de funcion enviar correo  correctamente
+INFO:root:2021-11-01 17:49:57 Se ejecuto APIHUNTER correctamente 
+INFO:root:2021-11-01 17:49:59 Se ejecuto Encrypt correctamente 

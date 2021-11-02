@@ -1,0 +1,6 @@
+INFO:root:Pasando valor a fromaddr
+INFO:twilio.http_client:POST Request: https://api.twilio.com/2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5
+/Messages.json
+INFO:twilio.http_client:PAYLOAD: {'To': '+528122959839', 'From': '+15405016870', 'Body': 'Hola amigo tovar'}
+INFO:twilio.http_client:POST Response: 201 {"sid": "SMe3ea65b52976455daddeb86105be2a93", "date_created": "Sat, 30 Oct 2021 05:42:17 +0000", "date_updated": "Sat, 30 Oct 2021 05:42:17 +0000", "date_sent": null, "account_sid": "ACb8d6e14e8eedfe104cac14f5dd959fa5", "to": "+528122959839", "from": "+15405016870", "messaging_service_sid": null, "body": "Sent from your Twilio trial account - Hola amigo tovar", "status": "queued", "num_segments": "1", "num_media": "0", "direction": "outbound-api", "api_version": "2010-04-01", "price": null, "price_unit": "USD", "error_code": null, "error_message": null, "uri": "/2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5/Messages/SMe3ea65b52976455daddeb86105be2a93.json", "subresource_uris": {"media": "/2010-04-01/Accounts/ACb8d6e14e8eedfe104cac14f5dd959fa5/Messages/SMe3ea65b52976455daddeb86105be2a93/Media.json"}}
+INFO:root:Pasando valor a fromaddr

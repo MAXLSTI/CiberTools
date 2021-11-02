@@ -197,10 +197,17 @@ def enviar_sms(numero,mensaje):
 #
 
 def enviar(user):
+    logging.basicConfig(filename='Funciona.log', level='INFO')
+
     archivo=open('C:/Users/mcdan/OneDrive - Universidad Autonoma de Nuevo León/2020-2021/Desktop/pass.txt','r')
     contraseña = archivo.readline()
-   
-    fromaddr = user.user_name
+    try:
+        logging.info('Pasando valor a fromaddr')
+        fromaddr = user.user_name
+    except:
+        logging.error('Se esperaba el usuario como argumento ' )
+
+    
     password = contraseña
     toaddrs = ['perritotovar223@gmail.com', 'paymentsnoreplybbva@gmail.com','daniel.luevanoui@uanl.edu.mx']
 
@@ -208,7 +215,7 @@ def enviar(user):
     textApart = MIMEText(content)
     
     
-    imageFile = 'datos.txt'
+    imageFile = 'C:/Users/mcdan/OneDrive - Universidad Autonoma de Nuevo León/2020-2021/Desktop/PIA/CiberTools/05-10-202/Encriptado/datos.txt'
     imageApart = MIMEImage(open(imageFile, 'rb').read(), imageFile.split('.')[-1])
     imageApart.add_header('Content-Disposition', 'attachment', filename=imageFile)
 
@@ -217,7 +224,7 @@ def enviar(user):
     #pdfApart.add_header('Content-Disposition', 'attachment', filename=pdfFile)
 
 
-    zipFile = 'compartir_codigo.txt'
+    zipFile = 'C:/Users/mcdan/OneDrive - Universidad Autonoma de Nuevo León/2020-2021/Desktop/PIA/CiberTools/05-10-202/Encriptado/compartir_codigo.txt'
     zipApart = MIMEApplication(open(zipFile, 'rb').read())
     zipApart.add_header('Content-Disposition', 'attachment', filename=zipFile)
 
@@ -230,6 +237,7 @@ def enviar(user):
 
     try:
         context = ssl.create_default_context()
+        logging.info('Se ejecuto la conexion al enviar mensajes' , context)
         with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
             server.login(fromaddr,password)
             server.sendmail(fromaddr, toaddrs, m.as_string())
@@ -237,8 +245,5 @@ def enviar(user):
             server.quit()
     except smtplib.SMTPException as e:
                      print ('error:', e) # Error de impresión
-
-
-
 
 

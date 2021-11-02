@@ -19,8 +19,7 @@ def guardar_informacion(datosEncontrados, organizacion):
     #    print(key,":",datos_encontrados[key])
     for i in range(9):
         correos.append(datosEncontrados["emails"][i]["value"])
-    print(correos)
-    archivo=open("uanl.txt","w")
+    archivo=open("uanl.txt","w", encoding="utf-8")
     for key in datosEncontrados:
         archivo.write(key+":"+str(datosEncontrados[key])+"\n")
     archivo.close()
